@@ -1,18 +1,19 @@
-GET http://localhost:8080/users
+GET http://localhost:8080/cats
 
 ###
 
-POST http://localhost:8080/users
+POST http://localhost:8080/cats
 Content-Type: application/json
 
 {
-    "name": "Pelle",
-    "age": 55,
+    "name": "Sigge",
+    "age": 3,
+    "favoriteFood": "Cheese",
     "id": 3
 }
 
 ### 
-PUT http://localhost:8080/users
+PUT http://localhost:8080/cats
 
 ### 
-DELETE  http://localhost:8080/users
+DELETE  http://localhost:8080/cats

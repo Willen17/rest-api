@@ -2,36 +2,38 @@ const express = require("express");
 const app = express();
 const port = 8080;
 
-const users = [
+const cats = [
   {
-    name: "William",
-    age: 22,
+    name: "Kasper",
+    age: 6,
+    favoriteFood: "Ham",
     id: 1,
   },
   {
-    name: "Tomas",
-    age: 69,
+    name: "Klas",
+    age: 4,
+    favoriteFood: "Anything he can find",
     id: 2,
   },
 ];
 
 app.use(express.json());
 
-app.get("/users", (req, res) => {
-  res.json(users);
+app.get("/cats", (req, res) => {
+  res.json(cats);
 });
 
-app.post("/users", (req, res) => {
-  users.push(req.body);
+app.post("/cats", (req, res) => {
+  cats.push(req.body);
   res.status(201);
   res.send("Användare tillagd");
 });
 
-app.put("/users", (req, res) => {
+app.put("/cats", (req, res) => {
   res.send("PUT request");
 });
 
-app.delete("/users", (req, res) => {
+app.delete("/cats", (req, res) => {
   res.send("Delete request");
 });
 
