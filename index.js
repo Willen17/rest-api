@@ -19,14 +19,14 @@ app.get("/users", (req, res) => {
   res.json(users);
 });
 
-app.put("/users", (req, res) => {
-  res.send("PUT request");
-});
-
 app.post("/users", (req, res) => {
   users.push(req.body);
   res.status(201);
   res.send("Användare tillagd");
+});
+
+app.put("/users", (req, res) => {
+  res.send("PUT request");
 });
 
 app.delete("/users", (req, res) => {
