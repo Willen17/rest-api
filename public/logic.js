@@ -1,4 +1,6 @@
-window.onload = () => getCats();
+window.addEventListener("load", (event) => {
+  document.getElementById("button").addEventListener("click", (e) => getCats());
+});
 
 const getCats = async () => {
   try {
