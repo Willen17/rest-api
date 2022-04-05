@@ -26,15 +26,15 @@ app.get("/cats", (req, res) => {
 app.post("/cats", (req, res) => {
   cats.push(req.body);
   res.status(201);
-  res.send("Användare tillagd");
+  res.send("Cat added");
 });
 
 app.put("/cats", (req, res) => {
-  res.send("PUT request");
+  res.send("Cat updated");
 });
 
 app.delete("/cats", (req, res) => {
-  res.send("Delete request");
+  res.send("Cat removed");
 });
 
 app.listen(port, () =>
