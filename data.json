@@ -1,0 +1,16 @@
+{
+  "cats": [
+    {
+      "name": "Kasper",
+      "age": 6,
+      "favoriteFood": "Ham",
+      "id": 1
+    },
+    {
+      "name": "Klas",
+      "age": 4,
+      "favoriteFood": "Anything he can find",
+      "id": 2
+    }
+  ]
+}
