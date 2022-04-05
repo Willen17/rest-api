@@ -7,7 +7,8 @@ Content-Type: application/json
 
 {
     "name": "Pelle",
-    "age": 55
+    "age": 55,
+    "id": 3
 }
 
 ### 

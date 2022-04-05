@@ -6,10 +6,12 @@ const users = [
   {
     name: "William",
     age: 22,
+    id: 1,
   },
   {
     name: "Tomas",
     age: 69,
+    id: 2,
   },
 ];
 
