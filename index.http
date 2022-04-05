@@ -1,8 +1,8 @@
-GET http://localhost:8080/cats
+GET http://localhost:8080/api/cats
 
 ###
 
-POST http://localhost:8080/cats
+POST http://localhost:8080/api/cats
 Content-Type: application/json
 
 {
@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 ### 
-PUT http://localhost:8080/cats
+PUT http://localhost:8080/api/cats/id
 
 ### 
-DELETE  http://localhost:8080/cats
+DELETE  http://localhost:8080/api/cats/id

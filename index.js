@@ -17,23 +17,35 @@ const cats = [
   },
 ];
 
+// KOnverterar allt till JSON
 app.use(express.json());
 
-app.get("/cats", (req, res) => {
+// Get a list of all cats from the database
+app.get("/api/cats", (req, res) => {
   res.json(cats);
+  res.end();
 });
 
-app.post("/cats", (req, res) => {
+// Add a new cat to the database
+app.post("/api/cats", (req, res) => {
   cats.push(req.body);
   res.status(201);
-  res.send("Cat added");
+  res.send({
+    type: "post",
+    name: req.body.name,
+    age: req.body.age,
+    favoriteFood: req.body.favoriteFood,
+    id: req.body.id,
+  });
 });
 
-app.put("/cats", (req, res) => {
+//Update a cat in the database
+app.put("/api/cats/:id", (req, res) => {
   res.send("Cat updated");
 });
 
-app.delete("/cats", (req, res) => {
+//Delete a cat from the database
+app.delete("/api/cats/:id", (req, res) => {
   res.send("Cat removed");
 });
 
