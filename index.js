@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 8080;
+let data = require("./data");
 
 const cats = [
   {
@@ -17,12 +18,15 @@ const cats = [
   },
 ];
 
+app.use("/", express.static("public"));
+
 // KOnverterar allt till JSON
 app.use(express.json());
 
 // Get a list of all cats from the database
 app.get("/api/cats", (req, res) => {
-  res.json(cats);
+  // I could just use res.send(data) beacuse it should already be in JSON, but just to be safe.
+  res.send(data);
   res.end();
 });
 
