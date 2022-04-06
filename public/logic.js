@@ -12,6 +12,10 @@ const getCats = async () => {
   }
 };
 
+const deleteCat = (id) => {};
+
+const editCat = (id) => {};
+
 const renderCats = (cats) => {
   catContainer = document.getElementById("cat-container");
   catContainer.innerHTML = null;
@@ -29,7 +33,7 @@ const renderCats = (cats) => {
                   preserveAspectRatio="xMidYMid slice"
                   focusable="false"
                 >
-                  <title>Placeholder</title>
+                  <title>${cat.name}</title>
                   <rect width="100%" height="100%" fill="#55595c"></rect>
                   <text x="50%" y="50%" fill="#eceeef" dy=".3em">
                     ${cat.name}
@@ -57,7 +61,7 @@ const renderCats = (cats) => {
                         Edit
                       </button>
                     </div>
-                    <small class="text-muted">9 mins</small>
+                    <small class="text-muted">Cat-ID: ${cat.id}</small>
                   </div>
                 </div>
               </div>
