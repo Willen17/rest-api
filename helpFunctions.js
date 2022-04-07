@@ -15,6 +15,18 @@ export function saveCats(list) {
   });
 }
 
+export function doesCatExist(id) {
+  let currentMenu = getCats();
+
+  let currentCat = currentMenu.find((cat) => {
+    return cat.id == id;
+  });
+
+  if (currentCat) {
+    return currentCat;
+  } else return false;
+}
+
 export function getId() {
   if (getCats().length > 0) {
     let highestID = Math.max.apply(

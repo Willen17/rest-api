@@ -22,11 +22,11 @@ Content-Type: application/json
 
 {
     "name": "Sigge",
-    "age": 3,
+    "age": 4,
     "favoriteFood": "Cheese",
-    "id": 1
+    "id": 2
 }
 
 
 ### 
-DELETE  http://localhost:8080/api/cats/id
+DELETE  http://localhost:8080/api/cats/3

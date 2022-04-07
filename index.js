@@ -1,5 +1,5 @@
 import express from "express";
-import { getCats, getId, saveCats } from "./helpFunctions.js";
+import { doesCatExist, getCats, getId, saveCats } from "./helpFunctions.js";
 const app = express();
 const port = 8080;
 
@@ -21,13 +21,17 @@ app.get("/api/cats", (req, res) => {
 app.get("/api/cats/:id", (req, res) => {
   const id = req.params.id;
 
-  let foundCat = getCats().find((cat) => cat.id == id);
+  // let foundCat = getCats().find((cat) => cat.id == id);
 
-  if (!foundCat) {
-    res.status(404).send("This cat doesnt exist");
+  if (!doesCatExist(id)) {
+    res
+      .status(404)
+      .send(
+        "This cat does not exist. Either it escaped or it never existed in the first place 😼"
+      );
   }
 
-  res.send(foundCat);
+  res.send(doesCatExist(id));
 });
 
 // Add a new cat to the database
@@ -44,6 +48,15 @@ app.post("/api/cats", (req, res) => {
 //Update a cat in the database
 app.put("/api/cats/:id", (req, res) => {
   const { id } = req.params;
+  if (!doesCatExist(id)) {
+    res
+      .status(404)
+      .send(
+        "This cat does not exist. Either it escaped or it never existed in the first place 😼"
+      );
+    return;
+  }
+
   let newList = getCats().map((cat) => {
     if (cat.id == id) {
       return req.body;
@@ -51,11 +64,24 @@ app.put("/api/cats/:id", (req, res) => {
     return cat;
   });
   saveCats(newList);
+  res.send("The cat have been updated!");
 });
 
 //Delete a cat from the database
 app.delete("/api/cats/:id", (req, res) => {
-  res.send("Cat removed");
+  const { id } = req.params;
+  if (!doesCatExist(id)) {
+    res
+      .status(404)
+      .send(
+        "This cat does not exist. Either it escaped or it never existed in the first place 😼"
+      );
+  }
+  let currentCats = getCats();
+  let catToBeDeleted = currentCats.find((cat) => cat.id == id);
+  let newList = currentCats.filter((cat) => cat.id != id);
+  saveCats(newList);
+  res.send(`Cat ${catToBeDeleted.name} has been deleted. Rest in peace 😿`);
 });
 
 app.listen(port, () =>
