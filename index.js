@@ -1,22 +1,7 @@
-const express = require("express");
+import express from "express";
+import { getCats, saveCats } from "./helpFunctions.js";
 const app = express();
 const port = 8080;
-let data = require("./data");
-
-const cats = [
-  {
-    name: "Kasper",
-    age: 6,
-    favoriteFood: "Ham",
-    id: 1,
-  },
-  {
-    name: "Klas",
-    age: 4,
-    favoriteFood: "Anything he can find",
-    id: 2,
-  },
-];
 
 app.use("/", express.static("public"));
 
@@ -25,27 +10,36 @@ app.use(express.json());
 
 // Get a list of all cats from the database
 app.get("/api/cats", (req, res) => {
-  // I could just use res.send(data) beacuse it should already be in JSON, but just to be safe.
-  res.send(data);
+  res.send(getCats());
   res.end();
 });
 
-// Add a new cat to the database
-app.post("/api/cats", (req, res) => {
-  cats.push(req.body);
-  res.status(201);
-  res.send({
-    type: "post",
-    name: req.body.name,
-    age: req.body.age,
-    favoriteFood: req.body.favoriteFood,
-    id: req.body.id,
-  });
+app.get("/api/cats/:id", (req, res) => {
+  const id = req.params.id;
+
+  for (let cat of getCats()) {
+    if (id == cat.id) {
+      res.send(cat);
+    }
+    return cat;
+  }
+
+  res.status(404).send("Cat not found");
 });
+
+// Add a new cat to the database
+app.post("/api/cats", (req, res) => {});
 
 //Update a cat in the database
 app.put("/api/cats/:id", (req, res) => {
-  res.send("Cat updated");
+  let newList = getCats().map((cat) => {
+    if (cat.id == req.body.id) {
+      return req.body;
+    }
+    return cat;
+  });
+  saveCats(newList);
+  console.log(getCats());
 });
 
 //Delete a cat from the database

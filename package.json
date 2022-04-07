@@ -3,6 +3,7 @@
     "express": "^4.17.3",
     "nodemon": "^2.0.15"
   },
+  "type": "module",
   "name": "rest-api",
   "version": "1.0.0",
   "main": "index.js",

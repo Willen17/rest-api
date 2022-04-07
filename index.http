@@ -2,6 +2,10 @@ GET http://localhost:8080/api/cats
 
 ###
 
+GET http://localhost:8080/api/cats/1
+
+###
+
 POST http://localhost:8080/api/cats
 Content-Type: application/json
 
@@ -13,7 +17,16 @@ Content-Type: application/json
 }
 
 ### 
-PUT http://localhost:8080/api/cats/id
+PUT http://localhost:8080/api/cats/1
+Content-Type: application/json
+
+{
+    "name": "Kasper",
+    "age": 6,
+    "favoriteFood": "My Toe",
+    "id": 1
+  }
+
 
 ### 
 DELETE  http://localhost:8080/api/cats/id

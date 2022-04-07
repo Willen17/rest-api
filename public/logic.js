@@ -14,14 +14,30 @@ const getCats = async () => {
 
 const deleteCat = (id) => {};
 
-const editCat = (id) => {};
+const editCat = (id) => {
+  console.log(id);
+  let catElement = document.getElementById(`cat${id}`);
+  catElement.innerHTML = null;
+
+  catElement.innerHTML = `if ur id is ${id} u are fat af bro`;
+};
+
+const getCat = async (id) => {
+  try {
+    const res = await fetch(`api/cats/${id}`);
+    const result = await res.json();
+    renderCats(result);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const renderCats = (cats) => {
   catContainer = document.getElementById("cat-container");
   catContainer.innerHTML = null;
 
-  for (let cat of cats.cats) {
-    let catLayout = `<div class="col">
+  for (let cat of cats) {
+    let catLayout = `<div class="col" id="cat${cat.id}">
               <div class="card shadow-sm">
                 <svg
                   class="bd-placeholder-img card-img-top"
@@ -57,6 +73,7 @@ const renderCats = (cats) => {
                       <button
                         type="button"
                         class="btn btn-sm btn-outline-secondary"
+                        onclick="editCat(${cat.id})"
                       >
                         Edit
                       </button>
