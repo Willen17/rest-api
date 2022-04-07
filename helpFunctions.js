@@ -14,3 +14,15 @@ export function saveCats(list) {
     console.log("Katt ändrad");
   });
 }
+
+export function getId() {
+  if (getCats().length > 0) {
+    let highestID = Math.max.apply(
+      Math,
+      getCats().map((cat) => {
+        return cat.id;
+      })
+    );
+    return highestID;
+  } else return 1;
+}

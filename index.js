@@ -1,5 +1,5 @@
 import express from "express";
-import { getCats, saveCats } from "./helpFunctions.js";
+import { getCats, getId, saveCats } from "./helpFunctions.js";
 const app = express();
 const port = 8080;
 
@@ -29,8 +29,9 @@ app.get("/api/cats/:id", (req, res) => {
 // Add a new cat to the database
 app.post("/api/cats", (req, res) => {
   let catsToBeUpdated = getCats();
+  console.log(getId());
   const newCat = req.body;
-  const newCatWithId = { ...newCat, id: catsToBeUpdated.length + 1 };
+  const newCatWithId = { ...newCat, id: getId() + 1 };
   catsToBeUpdated.push(newCatWithId);
   saveCats(catsToBeUpdated);
   res.send(`${newCat.name} has been added!`);
