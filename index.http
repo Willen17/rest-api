@@ -21,11 +21,11 @@ PUT http://localhost:8080/api/cats/1
 Content-Type: application/json
 
 {
-    "name": "Kasper",
-    "age": 6,
-    "favoriteFood": "My Toe",
+    "name": "Sigge",
+    "age": 3,
+    "favoriteFood": "Cheese",
     "id": 1
-  }
+}
 
 
 ### 

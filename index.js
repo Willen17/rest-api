@@ -27,12 +27,20 @@ app.get("/api/cats/:id", (req, res) => {
 });
 
 // Add a new cat to the database
-app.post("/api/cats", (req, res) => {});
+app.post("/api/cats", (req, res) => {
+  let catsToBeUpdated = getCats();
+  const newCat = req.body;
+  const newCatWithId = { ...newCat, id: catsToBeUpdated.length + 1 };
+  catsToBeUpdated.push(newCatWithId);
+  saveCats(catsToBeUpdated);
+  res.send(`${newCat.name} has been added!`);
+});
 
 //Update a cat in the database
 app.put("/api/cats/:id", (req, res) => {
+  const { id } = req.params;
   let newList = getCats().map((cat) => {
-    if (cat.id == req.body.id) {
+    if (cat.id == id) {
       return req.body;
     }
     return cat;
