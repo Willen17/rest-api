@@ -11,7 +11,7 @@ app.use(express.json());
 // Get a list of all cats from the database
 app.get("/api/cats", (req, res) => {
   if (getCats().length === 0) {
-    res.status(404).send("Cats not found");
+    res.status(404).send("No cats exist. Maybe they ran away 🏃‍♂️");
   } else {
     res.send(getCats());
   }
