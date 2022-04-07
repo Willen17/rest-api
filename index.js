@@ -10,7 +10,11 @@ app.use(express.json());
 
 // Get a list of all cats from the database
 app.get("/api/cats", (req, res) => {
-  res.send(getCats());
+  if (getCats().length === 0) {
+    res.status(404).send("Cats not found");
+  } else {
+    res.send(getCats());
+  }
   res.end();
 });
 

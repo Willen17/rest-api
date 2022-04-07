@@ -1,35 +1,34 @@
 window.addEventListener("load", (event) => {
-  document.getElementById("button").addEventListener("click", (e) => getCats());
+  document
+    .getElementById("button")
+    .addEventListener("click", async () => getCats());
 });
 
 const getCats = async () => {
-  try {
-    const res = await fetch("api/cats");
-    const result = await res.json();
-    renderCats(result);
-  } catch (err) {
-    console.log(err);
-  }
+  let result = await makeRequest("http://localhost:8080/api/cats", "GET");
+  renderCats(result);
+};
+
+const editCat = async (id) => {
+  let singleCat = await makeRequest(`api/cats/${id}`, "GET");
+  let catElement = document.getElementById(`cat${id}`);
+  catElement.innerHTML = `Cat name: ${singleCat.name}`;
 };
 
 const deleteCat = (id) => {};
 
-const editCat = async (id) => {
-  let singleCat = await getCat(id);
-  let catElement = document.getElementById(`cat${id}`);
-  catElement.innerHTML = `Cat name: ${singleCat.name}`;
+const makeRequest = async (url, method, body) => {
+  let response = await fetch(url, {
+    method,
 
-  //   catElement.innerHTML = `His Name is ${currentCat.name}`;
-};
+    body: JSON.stringify(body),
 
-const getCat = async (id) => {
-  try {
-    const res = await fetch(`api/cats/${id}`);
-    const result = await res.json();
-    return result;
-  } catch (err) {
-    console.log(err);
-  }
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  return response.json();
 };
 
 const renderCats = (cats) => {
