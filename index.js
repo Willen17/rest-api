@@ -17,14 +17,13 @@ app.get("/api/cats", (req, res) => {
 app.get("/api/cats/:id", (req, res) => {
   const id = req.params.id;
 
-  for (let cat of getCats()) {
-    if (id == cat.id) {
-      res.send(cat);
-    }
-    return cat;
+  let foundCat = getCats().find((cat) => cat.id == id);
+
+  if (!foundCat) {
+    res.status(404).send("This cat doesnt exist");
   }
 
-  res.status(404).send("Cat not found");
+  res.send(foundCat);
 });
 
 // Add a new cat to the database
@@ -39,7 +38,6 @@ app.put("/api/cats/:id", (req, res) => {
     return cat;
   });
   saveCats(newList);
-  console.log(getCats());
 });
 
 //Delete a cat from the database

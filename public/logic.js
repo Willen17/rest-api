@@ -14,26 +14,26 @@ const getCats = async () => {
 
 const deleteCat = (id) => {};
 
-const editCat = (id) => {
-  console.log(id);
+const editCat = async (id) => {
+  let singleCat = await getCat(id);
   let catElement = document.getElementById(`cat${id}`);
-  catElement.innerHTML = null;
+  catElement.innerHTML = `Cat name: ${singleCat.name}`;
 
-  catElement.innerHTML = `if ur id is ${id} u are fat af bro`;
+  //   catElement.innerHTML = `His Name is ${currentCat.name}`;
 };
 
 const getCat = async (id) => {
   try {
     const res = await fetch(`api/cats/${id}`);
     const result = await res.json();
-    renderCats(result);
+    return result;
   } catch (err) {
     console.log(err);
   }
 };
 
 const renderCats = (cats) => {
-  catContainer = document.getElementById("cat-container");
+  const catContainer = document.getElementById("cat-container");
   catContainer.innerHTML = null;
 
   for (let cat of cats) {
