@@ -12,7 +12,23 @@ const getCats = async () => {
 const editCat = async (id) => {
   let singleCat = await makeRequest(`api/cats/${id}`, "GET");
   let catElement = document.getElementById(`cat${id}`);
-  catElement.innerHTML = `Cat name: ${singleCat.name}`;
+  let formLayout = `<form>
+  <div class="mb-3">
+    <label for="cat-name" class="form-label">Cat name</label>
+    <input class="form-control" id="cat-name" aria-labelledby="cat-name" value="${singleCat.name}">
+  </div>
+  <div class="mb-3">
+    <label for="cat-age" class="form-label">Age</label>
+    <input class="form-control" id="cat-age" aria-labelledby="cat-age" value="${singleCat.age}">
+  </div>
+  <div class="mb-3">
+    <label for="cat-favorite-food" class="form-label">Favorite food</label>
+    <input class="form-control" id="cat-favorite-food" aria-labelledby="cat-favorite-food" value="${singleCat.favoriteFood}">
+  </div>
+ 
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>`;
+  catElement.innerHTML = formLayout;
 };
 
 const deleteCat = (id) => {};
