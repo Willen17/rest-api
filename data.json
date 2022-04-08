@@ -3,12 +3,21 @@
     "name": "Kasper",
     "age": 6,
     "favoriteFood": "Ham",
+    "url": "https://i.imgur.com/vg6kxyO.jpg",
     "id": 1
   },
   {
     "name": "Klas",
     "age": 4,
     "favoriteFood": "Anything he can find!",
+    "url": "https://i.imgur.com/WdLrEUY.jpeg",
     "id": 2
+  },
+  {
+    "name": "Svante",
+    "age": 4,
+    "favoriteFood": "Cheese",
+    "url": "https://i.imgur.com/JCAuCpG.jpg",
+    "id": 3
   }
 ]

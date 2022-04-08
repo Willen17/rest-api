@@ -21,12 +21,12 @@ PUT http://localhost:8080/api/cats/1
 Content-Type: application/json
 
 {
-    "name": "Sigge",
+    "name": "Klas",
     "age": 4,
-    "favoriteFood": "Cheese",
+    "favoriteFood": "My snacks 😡",
     "id": 2
 }
 
 
 ### 
-DELETE  http://localhost:8080/api/cats/3
+DELETE  http://localhost:8080/api/cats/2

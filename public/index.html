@@ -15,20 +15,25 @@
     <script src="./logic.js"></script>
   </head>
   <body>
-    <main>
-      <div classname="container">
-        <h1>Rent a cat</h1>
-        <button id="button">Show available cats</button>
-      </div>
-      <div class="album py-5 bg-light">
-        <div class="container">
-          <div
-            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
-            id="cat-container"
-          >
-            
+      <main>
+        <div classname="container" style="display: flex; flex-direction: column; align-items: center;">
+          <h1>Rent a cat</h1>
+           <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-primary" id="button" type="button">Show available cats</button>
+            </div>
+        </div>
+        <div class="album py-5 bg-light">
+          <div class="container">
+            <div
+              class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+              id="cat-container"
+            >
+
             </div>
           </div>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary" id="add-a-cat" type="button">Add a cat</button>  
         </div>
       </div>
     </main>
