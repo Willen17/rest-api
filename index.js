@@ -42,7 +42,7 @@ app.post("/api/cats", (req, res) => {
   const newCatWithId = { ...newCat, id: getId() + 1 };
   catsToBeUpdated.push(newCatWithId);
   saveCats(catsToBeUpdated);
-  res.send(`${newCat.name} has been added!`);
+  res.json(`${newCat.name} has been added!`);
 });
 
 //Update a cat in the database
@@ -51,7 +51,7 @@ app.put("/api/cats/:id", (req, res) => {
   if (!doesCatExist(id)) {
     res
       .status(404)
-      .send(
+      .json(
         "This cat does not exist. Either it escaped or it never existed in the first place 😼"
       );
     return;
@@ -64,7 +64,7 @@ app.put("/api/cats/:id", (req, res) => {
     return cat;
   });
   saveCats(newList);
-  res.send("The cat have been updated!");
+  res.json("The cat have been updated!");
 });
 
 //Delete a cat from the database
@@ -73,7 +73,7 @@ app.delete("/api/cats/:id", (req, res) => {
   if (!doesCatExist(id)) {
     res
       .status(404)
-      .send(
+      .json(
         "This cat does not exist. Either it escaped or it never existed in the first place 😼"
       );
   }
@@ -81,7 +81,7 @@ app.delete("/api/cats/:id", (req, res) => {
   let catToBeDeleted = currentCats.find((cat) => cat.id == id);
   let newList = currentCats.filter((cat) => cat.id != id);
   saveCats(newList);
-  res.send(`Cat ${catToBeDeleted.name} has been deleted. Rest in peace 😿`);
+  res.json(`Cat ${catToBeDeleted.name} has been deleted. Rest in peace 😿`);
 });
 
 app.listen(port, () =>

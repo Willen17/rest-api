@@ -16,9 +16,9 @@ export function saveCats(list) {
 }
 
 export function doesCatExist(id) {
-  let currentMenu = getCats();
+  let currentCats = getCats();
 
-  let currentCat = currentMenu.find((cat) => {
+  let currentCat = currentCats.find((cat) => {
     return cat.id == id;
   });
 

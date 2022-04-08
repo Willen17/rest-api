@@ -9,26 +9,54 @@ const getCats = async () => {
   renderCats(result);
 };
 
-const editCat = async (id) => {
+const getCat = async (id) => {
   let singleCat = await makeRequest(`api/cats/${id}`, "GET");
   let catElement = document.getElementById(`cat${id}`);
-  let formLayout = `<form>
+  let formLayout = `<form id="updateCat${id}">
   <div class="mb-3">
     <label for="cat-name" class="form-label">Cat name</label>
-    <input class="form-control" id="cat-name" aria-labelledby="cat-name" value="${singleCat.name}">
+    <input class="form-control" id="cat-name" aria-labelledby="cat-name" name="cat-name" value="${singleCat.name}">
   </div>
   <div class="mb-3">
     <label for="cat-age" class="form-label">Age</label>
-    <input class="form-control" id="cat-age" aria-labelledby="cat-age" value="${singleCat.age}">
+    <input type="number" class="form-control" id="cat-age" aria-labelledby="cat-age" name="cat-age" value="${singleCat.age}">
   </div>
   <div class="mb-3">
     <label for="cat-favorite-food" class="form-label">Favorite food</label>
-    <input class="form-control" id="cat-favorite-food" aria-labelledby="cat-favorite-food" value="${singleCat.favoriteFood}">
+    <input class="form-control" id="cat-favorite-food" aria-labelledby="cat-favorite-food" name="cat-favorite-food" value="${singleCat.favoriteFood}">
   </div>
  
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" id="submit${id}">Submit</button>
 </form>`;
   catElement.innerHTML = formLayout;
+  let form = document.getElementById(`updateCat${id}`);
+  form.addEventListener("submit", async (event) => {
+    updateCat(event, id, catElement);
+  });
+};
+
+const updateCat = async (event, catId, catElement) => {
+  event.preventDefault();
+
+  let catName = event.target[0].value;
+  let catAge = event.target[1].value;
+  let catFavoriteFood = event.target[2].value;
+
+  let object = {
+    name: catName,
+    age: parseInt(catAge),
+    favoriteFood: catFavoriteFood,
+    id: catId,
+  };
+
+  console.log(JSON.stringify(object, null, 2));
+  let result = await makeRequest(
+    `http://localhost:8080/api/cats/${catId}`,
+    "PUT",
+    object
+  );
+
+  catElement.innerHTML = `<h3>${result}<h3>`;
 };
 
 const deleteCat = (id) => {};
@@ -88,7 +116,7 @@ const renderCats = (cats) => {
                       <button
                         type="button"
                         class="btn btn-sm btn-outline-secondary"
-                        onclick="editCat(${cat.id})"
+                        onclick="getCat(${cat.id})"
                       >
                         Edit
                       </button>
