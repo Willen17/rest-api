@@ -2,7 +2,7 @@ window.addEventListener("load", (event) => {
   document
     .getElementById("button")
     .addEventListener("click", async () => getCats());
-  getCats();
+
   document
     .getElementById("add-a-cat")
     .addEventListener("click", () => renderPostCat());
