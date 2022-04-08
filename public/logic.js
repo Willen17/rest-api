@@ -49,7 +49,6 @@ const updateCat = async (event, catId, catElement) => {
     id: catId,
   };
 
-  console.log(JSON.stringify(object, null, 2));
   let result = await makeRequest(
     `http://localhost:8080/api/cats/${catId}`,
     "PUT",
@@ -57,9 +56,27 @@ const updateCat = async (event, catId, catElement) => {
   );
 
   catElement.innerHTML = `<h3>${result}<h3>`;
+
+  //To run the code after 2 seconds
+  setTimeout(function () {
+    getCats();
+  }, 2000);
 };
 
-const deleteCat = (id) => {};
+const deleteCat = async (id) => {
+  let result = await makeRequest(
+    `http://localhost:8080/api/cats/${id}`,
+    "DELETE"
+  );
+
+  let catElement = document.getElementById(`cat${id}`);
+
+  catElement.innerHTML = `<h3>${result}<h3>`;
+
+  setTimeout(function () {
+    getCats();
+  }, 2000);
+};
 
 const makeRequest = async (url, method, body) => {
   let response = await fetch(url, {
@@ -106,16 +123,17 @@ const renderCats = (cats) => {
                   <div
                     class="d-flex justify-content-between align-items-center"
                   >
-                    <div class="btn-group">
+                    <div >
                       <button
                         type="button"
-                        class="btn btn-sm btn-outline-secondary"
+                        class="btn btn-sm btn-danger"
+                        onclick="deleteCat(${cat.id})"
                       >
-                        View
+                        Delete
                       </button>
                       <button
                         type="button"
-                        class="btn btn-sm btn-outline-secondary"
+                        class="btn btn-sm btn-secondary"
                         onclick="getCat(${cat.id})"
                       >
                         Edit

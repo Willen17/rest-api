@@ -11,7 +11,7 @@ app.use(express.json());
 // Get a list of all cats from the database
 app.get("/api/cats", (req, res) => {
   if (getCats().length === 0) {
-    res.status(404).send("No cats exist. Maybe they ran away 🏃‍♂️");
+    res.status(404).send("No cats exist. \nMaybe they ran away 🏃‍♂️");
   } else {
     res.send(getCats());
   }
@@ -27,7 +27,7 @@ app.get("/api/cats/:id", (req, res) => {
     res
       .status(404)
       .send(
-        "This cat does not exist. Either it escaped or it never existed in the first place 😼"
+        "This cat does not exist. \nEither it escaped or it never existed in the first place 😼"
       );
   }
 
@@ -52,7 +52,7 @@ app.put("/api/cats/:id", (req, res) => {
     res
       .status(404)
       .json(
-        "This cat does not exist. Either it escaped or it never existed in the first place 😼"
+        "This cat does not exist. \nEither it escaped or it never existed in the first place 😼"
       );
     return;
   }
@@ -64,7 +64,7 @@ app.put("/api/cats/:id", (req, res) => {
     return cat;
   });
   saveCats(newList);
-  res.json("The cat have been updated!");
+  res.json("The cat updated correctly! 🔃");
 });
 
 //Delete a cat from the database
@@ -74,14 +74,14 @@ app.delete("/api/cats/:id", (req, res) => {
     res
       .status(404)
       .json(
-        "This cat does not exist. Either it escaped or it never existed in the first place 😼"
+        "This cat does not exist. \nEither it escaped or it never existed in the first place 😼"
       );
   }
   let currentCats = getCats();
   let catToBeDeleted = currentCats.find((cat) => cat.id == id);
   let newList = currentCats.filter((cat) => cat.id != id);
   saveCats(newList);
-  res.json(`Cat ${catToBeDeleted.name} has been deleted. Rest in peace 😿`);
+  res.json(`Cat ${catToBeDeleted.name} has been deleted. \nRest in peace 😿`);
 });
 
 app.listen(port, () =>
