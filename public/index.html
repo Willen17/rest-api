@@ -14,12 +14,18 @@
 
 <body>
   <main>
-    <div classname="container" style="display: flex; flex-direction: column; align-items: center;">
-      <h1>Rent a cat</h1>
-      <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-primary" id="button" type="button">Show available cats</button>
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">Rent a cat 😺</h1>
+        <p class="lead text-muted">Are you a cat person but don't have the time to take care of one full-time? </br>
+          Worry no more! You have come to the right place! </br> </br> Here you can rent a cat for however long you
+          want!</p>
+        <p>
+          <a href="#" class="btn btn-primary" id="button">Show available cats</a>
+        </p>
       </div>
-    </div>
+    </section>
+
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="cat-container">
@@ -98,12 +104,21 @@
 
         </div>
       </div>
-    </div>
-    <div class="d-grid gap-2 col-6 mx-auto">
-      <button class="btn btn-primary" id="add-a-cat" type="button">Add a cat</button>
+      <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 1rem">
+        <button class="btn btn-primary" id="add-a-cat" type="button">Add a cat</button>
+      </div>
     </div>
     </div>
   </main>
+  <footer class="text-muted" style="height: 3rem;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; height: 100%;">
+
+      <p style="margin: 0">Made by William Saar ©</p>
+      <p style="margin: 0">
+        <a href="#">Back to top</a>
+      </p>
+    </div>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
