@@ -2,6 +2,7 @@ window.addEventListener("load", (event) => {
   document
     .getElementById("button")
     .addEventListener("click", async () => getCats());
+  getCats();
   document
     .getElementById("add-a-cat")
     .addEventListener("click", () => renderPostCat());
@@ -173,6 +174,7 @@ const renderCats = (cats) => {
         <div class="card shadow-sm">
             <img src="${cat.url}" class="card-img-top" alt="${cat.name}">
             <div class="card-body">
+            <h5 class="card-title">${cat.name}</h5>
                     <p class="card-text">
                         This cats' name is ${cat.name} and he/she is ${cat.age} years old. ${cat.name}'s favorite food is ${cat.favoriteFood}.
                     </p>
