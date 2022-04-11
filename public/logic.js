@@ -6,6 +6,8 @@ window.addEventListener("load", (event) => {
   document
     .getElementById("add-a-cat")
     .addEventListener("click", () => renderPostCat());
+
+  getCats();
 });
 
 const getCats = async () => {
