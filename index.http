@@ -17,16 +17,17 @@ Content-Type: application/json
 }
 
 ### 
-PUT http://localhost:8080/api/cats/1
+PUT http://localhost:8080/api/cats/2
 Content-Type: application/json
 
 {
     "name": "Klas",
     "age": 4,
     "favoriteFood": "My snacks 😡",
+    "url": "https://i.imgur.com/WdLrEUY.jpeg",
     "id": 2
 }
 
 
 ### 
-DELETE  http://localhost:8080/api/cats/2
+DELETE  http://localhost:8080/api/cats/3
